@@ -4,12 +4,16 @@ import { ClientService } from "../core/client.service";
 import { Client } from "../core/client.model";
 import {MatPaginatorModule, MatPaginator} from '@angular/material/paginator';
 import { DatePipe } from "@angular/common";
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
     selector: "app-client-table",
     templateUrl: "./client-table.component.html",
     styleUrl: "./client-table.component.css",
-    imports: [MatTableModule, MatPaginatorModule, DatePipe],
+    imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule],
     standalone: true
 })
 
@@ -18,6 +22,7 @@ export class ClientTableComponent implements OnInit {
 
     dataSource = new MatTableDataSource<Client>();
     displayedCol = ['name', 'email', 'phone', 'dateCreated'];
+    searchControl = new FormControl('');
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -25,6 +30,16 @@ export class ClientTableComponent implements OnInit {
         this.clientService.loadClients().subscribe(clients => {
             this.dataSource.data = clients;
             this.dataSource.paginator = this.paginator;
+        });
+
+        // Search ONLY by name (filter)
+        this.dataSource.filterPredicate = (data: Client, filter: string) => {
+            return data.name.toLowerCase().includes(filter);
+        };
+
+        this.searchControl.valueChanges.subscribe(value => {
+            this.dataSource.filter = value?.trim().toLowerCase() || '';
+            this.dataSource.paginator?.firstPage();
         });
     }
 }

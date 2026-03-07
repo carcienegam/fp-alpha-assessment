@@ -1,4 +1,11 @@
 <div class="table-container">
+    <div class="search-container">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput [formControl]="searchControl" placeholder="Buscar">
+        </mat-form-field>
+    </div>
+    
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Nombre </th>
