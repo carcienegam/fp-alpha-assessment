@@ -1,19 +1,20 @@
 import { Component, OnInit, ViewChild, inject } from "@angular/core";
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { ClientService } from "../core/client.service";
-import { Client } from "../core/client.model";
+import { ClientService } from "../../core/client.service";
+import { Client } from "../../core/client.model";
 import {MatPaginatorModule, MatPaginator} from '@angular/material/paginator';
 import { DatePipe } from "@angular/common";
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
     selector: "app-client-table",
     templateUrl: "./client-table.component.html",
     styleUrl: "./client-table.component.css",
-    imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule],
+    imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule],
     standalone: true
 })
 

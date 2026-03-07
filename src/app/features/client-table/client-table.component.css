@@ -6,9 +6,16 @@
     background-color: #fff;
 }
 
-.search-container {
+.toolbar {
     display: flex;
     justify-content: flex-end;
     background-color: #f5f5f5;
     padding: 10px;
+    gap: 12px;
+    align-items: center;
+
+    button {
+        border-radius: 100%;
+        box-shadow: none;
+    }
 }

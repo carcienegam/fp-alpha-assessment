@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: 'clients',
-        loadComponent: () => import('./features/client-table.component').then(m => m.ClientTableComponent)
+        loadComponent: () => import('./features/client-table/client-table.component').then(m => m.ClientTableComponent)
     },
     {
         path: '',
