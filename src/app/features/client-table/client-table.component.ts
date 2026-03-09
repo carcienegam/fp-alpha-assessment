@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { ClientDialogComponent } from "../client-dialog/client-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
     selector: "app-client-table",
@@ -28,7 +30,9 @@ export class ClientTableComponent implements OnInit {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     ngOnInit() {
-        this.clientService.loadClients().subscribe(clients => {
+        this.clientService.loadClients().subscribe();
+
+        this.clientService.clients$.subscribe(clients => {
             this.dataSource.data = clients;
             this.dataSource.paginator = this.paginator;
         });
@@ -43,5 +47,13 @@ export class ClientTableComponent implements OnInit {
             this.dataSource.paginator?.firstPage();
         });
     }
+
+    private dialog = inject(MatDialog);
+    openDialog() {
+        this.dialog.open(ClientDialogComponent, {
+            width: '400px'
+        });
+    }
+
 }
 

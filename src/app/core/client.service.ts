@@ -23,4 +23,20 @@ export class ClientService {
             tap(clients => this.clientsSubject.next(clients))
         );
     }
+
+    addClient(client: Omit<Client, 'id' | 'dateCreated'>): Observable<Client> {
+        return this.http.post<Client>(`${this.apiURL}/users`, client).pipe(
+            tap(() => {
+                const newClient: Client = {
+                    ...client,
+                    id: Date.now(),
+                    dateCreated: new Date().toISOString()
+                };
+                const currentClients = this.clientsSubject.getValue();
+                this.clientsSubject.next([...currentClients, newClient]);
+            })
+        );
+    }
+
+
 }
