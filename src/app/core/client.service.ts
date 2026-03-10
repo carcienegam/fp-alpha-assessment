@@ -11,7 +11,7 @@ import { not } from "rxjs/internal/util/not";
 
 export class ClientService {
     private http =  inject(HttpClient);
-    private apiURL = "https://jsonplaceholder.typicode.com/";
+    private apiURL = "https://jsonplaceholder.typicode.com";
 
     private clientsSubject = new BehaviorSubject<Client[]>([]);
     clients$ = this.clientsSubject.asObservable();
