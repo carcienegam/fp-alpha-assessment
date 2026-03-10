@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: var(--mat-sys-surface-container-low);
+}
 .detail-container {
     padding: 2rem;
     background: var(--mat-sys-surface-container-low);
