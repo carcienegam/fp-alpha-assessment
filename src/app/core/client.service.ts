@@ -48,4 +48,8 @@ export class ClientService {
         return this.http.get<Note[]>(`${this.apiURL}/users/${id}/posts`);
     }
 
+    deleteNote(noteId: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiURL}/posts/${noteId}`);
+    }
+
 }

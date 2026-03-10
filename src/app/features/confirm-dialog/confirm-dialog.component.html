@@ -1,0 +1,22 @@
+<div class="dialog-content">
+    <h2>Eliminar nota</h2>
+    <hr>
+
+    <div class="warning">
+        <mat-icon color="warn" class="warning-icon">warning</mat-icon>
+        <div class="warning-text">
+            <p>¿Estás seguro de que deseas eliminar esta nota?</p>
+            <p>Esta acción no se puede deshacer.</p>
+        </div>
+    </div>
+    <mat-dialog-actions align="center">
+        <button mat-stroked-button (click)="cancel()">
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button mat-raised-button color="warn" (click)="confirm()">
+            <mat-icon>delete</mat-icon>
+            Eliminar
+        </button>
+    </mat-dialog-actions>
+</div>

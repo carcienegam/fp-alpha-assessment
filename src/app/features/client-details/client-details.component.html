@@ -20,8 +20,14 @@
         </div>
 
         <div class="notes-section">
-            <h3>Notas</h3>
+            <div class="notes-header">
+                <h2>Notas</h2>
 
+                <button mat-mini-fab color="primary">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
             @if (notes.length === 0) {
                 <p>No hay notas disponibles.</p>
             }
@@ -36,7 +42,7 @@
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
+                                <button mat-menu-item (click)="confirmDelete(note.id)">
                                     <mat-icon color="warn">delete</mat-icon>
                                     Eliminar
                                 </button>

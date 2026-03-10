@@ -8,6 +8,8 @@ import { ClientService } from "../../core/client.service";
 import { Client } from "../../core/client.model";
 import { Note } from "../../core/note.model";
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
       selector: 'app-client-details',
@@ -18,26 +20,43 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 
 export class ClientDetailsComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
-  private clientService = inject(ClientService);
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
+    private clientService = inject(ClientService);
 
-  client: Client | null = null;
-  notes: Note[] = [];
+    client: Client | null = null;
+    notes: Note[] = [];
 
-  ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    ngOnInit() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+    
+        forkJoin({
+          client: this.clientService.getClientById(id),
+          notes: this.clientService.getNotesByClient(id)
+        }).subscribe(({ client, notes }) => {
+          this.client = client;
+          this.notes = notes;
+        });
+    }
 
-    forkJoin({
-      client: this.clientService.getClientById(id),
-      notes: this.clientService.getNotesByClient(id)
-    }).subscribe(({ client, notes }) => {
-      this.client = client;
-      this.notes = notes;
-    });
-  }
+    goBack() {
+        this.router.navigate(['/clients']);
+    }
+  
+    deleteNote(noteId: number) {
+        this.clientService.deleteNote(noteId).subscribe(() => {
+            this.notes = this.notes.filter(note => note.id !== noteId);
+        });
+    }
 
-  goBack() {
-    this.router.navigate(['/clients']);
-  }
+    private dialog = inject(MatDialog);
+    confirmDelete(noteId: number) {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteNote(noteId);
+            }
+        });
+    }
 }

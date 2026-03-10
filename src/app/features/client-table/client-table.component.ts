@@ -52,7 +52,7 @@ export class ClientTableComponent implements OnInit {
     private dialog = inject(MatDialog);
     openDialog() {
         this.dialog.open(ClientDialogComponent, {
-            width: '400px'
+            width: '350px'
         });
     }
 
