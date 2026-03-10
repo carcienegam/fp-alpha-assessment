@@ -10,6 +10,7 @@ import { Note } from "../../core/note.model";
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
 
 @Component({
       selector: 'app-client-details',
@@ -56,6 +57,21 @@ export class ClientDetailsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.deleteNote(noteId);
+            }
+        });
+    }
+
+    openAddNote(){
+        const dialogRef = this.dialog.open(AddNoteDialogComponent);
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                const newNote = {
+                    id: Math.max(...this.notes.map(n => n.id)) + 1,
+                    userId: this.client!.id,
+                    title: result.title,
+                    body: result.body
+                };
+            this.notes = [...this.notes, newNote];
             }
         });
     }
