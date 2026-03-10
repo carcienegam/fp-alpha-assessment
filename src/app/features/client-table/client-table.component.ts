@@ -35,7 +35,6 @@ export class ClientTableComponent implements OnInit {
 
         this.clientService.clients$.subscribe(clients => {
             this.dataSource.data = clients;
-            this.dataSource.paginator = this.paginator;
         });
 
         // Search ONLY by name (filter)
@@ -47,6 +46,10 @@ export class ClientTableComponent implements OnInit {
             this.dataSource.filter = value?.trim().toLowerCase() || '';
             this.dataSource.paginator?.firstPage();
         });
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
     }
 
     private dialog = inject(MatDialog);

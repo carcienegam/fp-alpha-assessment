@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 import { Client } from "./client.model";
 import { Note } from "./note.model";
+import { of } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 
@@ -15,6 +16,10 @@ export class ClientService {
     clients$ = this.clientsSubject.asObservable();
 
     loadClients(): Observable<Client[]> {
+        // If we already have clients loaded, return the observable of the current clients
+        if (this.clientsSubject.getValue().length > 0) {
+            return this.clients$;
+        }
         return this.http.get<Client[]>(`${this.apiURL}/users`).pipe(
             map(clients => clients.map(client => ({
                 ...client,
@@ -41,6 +46,11 @@ export class ClientService {
     }
 
     getClientById(id: number): Observable<Client> {
+        // Search in the current clients first, for local caching.
+        const currentClients = this.clientsSubject.getValue().find(c => c.id === id);
+        if (currentClients) {
+            return of(currentClients);
+        }
         return this.http.get<Client>(`${this.apiURL}/users/${id}`);
     }
 
