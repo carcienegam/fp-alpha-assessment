@@ -6,15 +6,20 @@
 
     @if (client) {
         <div class="client-card">
-            <h2>{{client.name}}</h2>
-            <div class="client-info-row">
-                <div class="info-row">
-                    <mat-icon>email</mat-icon>
-                    <span>{{client.email}}</span>
-                </div>
-                <div class="info-row">
-                    <mat-icon>phone</mat-icon>
-                    <span>{{client.phone}}</span>
+            <div class="avatar">
+                {{client.name.charAt(0)}}
+            </div>
+            <div class="client-info">
+                <h2>{{client.name}}</h2>
+                <div class="client-info-row">
+                    <div class="info-row">
+                        <mat-icon>email</mat-icon>
+                        <span>{{client.email}}</span>
+                    </div>
+                    <div class="info-row">
+                        <mat-icon>phone</mat-icon>
+                        <span>{{client.phone}}</span>
+                    </div>
                 </div>
             </div>
         </div>

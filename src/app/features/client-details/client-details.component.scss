@@ -2,12 +2,30 @@
     padding: 2rem;
     background: var(--mat-sys-surface-container-low);
 }
+
 .client-card {
-  background: var(--mat-sys-surface);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: var(--mat-sys-level2);
-  margin-bottom: 2rem;
+    background: var(--mat-sys-surface);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: var(--mat-sys-level2);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .client-info-row {
@@ -31,7 +49,7 @@
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
 }
 
