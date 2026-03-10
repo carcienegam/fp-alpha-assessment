@@ -8,14 +8,37 @@
 
 .toolbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background-color: var(--mat-sys-surface-container);
-    padding: 10px;
-    gap: 12px;
+    padding: 12px;
     align-items: center;
 
     button {
         border-radius: 100%;
         box-shadow: none;
+    }
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: var(--mat-sys-surface);
+    width: 300px;
+
+    mat-icon{
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
     }
 }
