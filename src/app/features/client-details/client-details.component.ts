@@ -8,16 +8,16 @@ import { ClientService } from "../../core/client.service";
 import { Client } from "../../core/client.model";
 import { Note } from "../../core/note.model";
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 import { AddNoteDialogComponent } from "../add-note-dialog/add-note-dialog.component";
 
 @Component({
       selector: 'app-client-details',
       standalone: true,
-      imports: [CommonModule, MatButtonModule, MatIconModule, MatMenuModule],
+      imports: [CommonModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule],
       templateUrl: './client-details.component.html',
-      styleUrl: './client-details.component.css'
+      styleUrl: './client-details.component.scss'
 })
 
 export class ClientDetailsComponent implements OnInit {

@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 @Component({
     selector: "app-client-table",
     templateUrl: "./client-table.component.html",
-    styleUrl: "./client-table.component.css",
+    styleUrl: "./client-table.component.scss",
     imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule],
     standalone: true
 })

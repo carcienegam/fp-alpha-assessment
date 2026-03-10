@@ -1,11 +1,12 @@
 .detail-container {
     padding: 2rem;
+    background: var(--mat-sys-surface-container-low);
 }
 .client-card {
-  background: white;
+  background: var(--mat-sys-surface);
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: var(--mat-sys-level2);
   margin-bottom: 2rem;
 }
 
@@ -35,10 +36,10 @@
 }
 
 .note-card {
-    background: white;
+    background: var(--mat-sys-surface);
     border-radius: 8px;
     padding: 1rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    box-shadow: var(--mat-sys-level2);
 }
 
 .notes-header {

@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
     standalone: true,
     imports: [ MatDialogModule, MatButtonModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule, MatIconModule ],
     templateUrl: './add-note-dialog.component.html',
-    styleUrl: './add-note-dialog.component.css'
+    styleUrl: './add-note-dialog.component.scss'
 })
 
 export class AddNoteDialogComponent {

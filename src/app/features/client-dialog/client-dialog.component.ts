@@ -12,7 +12,7 @@ import { MatIconModule } from "@angular/material/icon";
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatLabel, MatInputModule, MatFormFieldModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './client-dialog.component.html',
-  styleUrl: './client-dialog.component.css'
+  styleUrl: './client-dialog.component.scss'
 })
 
 export class ClientDialogComponent {

@@ -17,6 +17,18 @@ html {
   ));
 }
 
+html-dark {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+      theme-type: dark,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
@@ -35,5 +47,11 @@ body {
 }
 /* You can add global styles to this file, and also import other style files */
 
+html.dark body{
+  color-scheme: dark;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
