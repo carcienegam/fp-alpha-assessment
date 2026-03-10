@@ -1,17 +1,32 @@
+:host{
+    display: block;
+    min-height: 100vh;
+    background-color: var(--mat-sys-surface-container-low);
+}
+.page-container {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 2rem;
+}
 .table-container {
-    margin: 20px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--mat-sys-level2);
+    margin: auto;
     background-color: var(--mat-sys-surface);
 }
 
-.toolbar {
+.table-header {
     display: flex;
     justify-content: space-between;
-    background-color: var(--mat-sys-surface-container);
-    padding: 12px;
     align-items: center;
+    margin-bottom: 1.5rem;
+
+    h1 {
+        margin: 0;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
 
     button {
         border-radius: 100%;
@@ -24,9 +39,6 @@
     align-items: center;
     gap: 6px;
     padding: 4px 8px;
-    border-radius: 8px;
-    background: var(--mat-sys-surface);
-    width: 280px;
 
     mat-icon{
         width: 40px;
@@ -38,7 +50,41 @@
     input {
         border: none;
         outline: none;
-        background: transparent;
         width: 100%;
+        background: transparent;
     }
+}
+
+tr.mat-mdc-row{
+    &:hover {
+        background-color: var(--mat-sys-surface-container);
+    }
+}
+
+.mat-mdc-paginator {
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  .mat-mdc-paginator-range-label {
+    font-size: 0.85rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  .mat-mdc-icon-button {
+    border-radius: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+
+    &:hover {
+      background-color: var(--mat-sys-surface-container) !important;
+    }
+
+    &[disabled] {
+      opacity: 0.3;
+    }
+  }
+
+  .mat-mdc-select-value {
+    font-size: 0.85rem;
+  }
 }

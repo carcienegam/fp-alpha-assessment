@@ -54,4 +54,32 @@ html.dark body{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-mdc-paginator{
+  background: transparent;
 
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  .mat-mdc-paginator-range-label {
+    font-size: 0.85rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  .mat-mdc-icon-button {
+    border-radius: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+
+    &:hover {
+      background-color: var(--mat-sys-surface-container) !important;
+    }
+
+    &[disabled] {
+      opacity: 0.3;
+    }
+  }
+
+  .mat-mdc-select-value {
+    font-size: 0.85rem;
+  }
+}
