@@ -1,0 +1,43 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { forkJoin } from 'rxjs';
+import { ClientService } from "../../core/client.service";
+import { Client } from "../../core/client.model";
+import { Note } from "../../core/note.model";
+import { MatMenuModule } from '@angular/material/menu';
+
+@Component({
+      selector: 'app-client-details',
+      standalone: true,
+      imports: [CommonModule, MatButtonModule, MatIconModule, MatMenuModule],
+      templateUrl: './client-details.component.html',
+      styleUrl: './client-details.component.css'
+})
+
+export class ClientDetailsComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private clientService = inject(ClientService);
+
+  client: Client | null = null;
+  notes: Note[] = [];
+
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    forkJoin({
+      client: this.clientService.getClientById(id),
+      notes: this.clientService.getNotesByClient(id)
+    }).subscribe(({ client, notes }) => {
+      this.client = client;
+      this.notes = notes;
+    });
+  }
+
+  goBack() {
+    this.router.navigate(['/clients']);
+  }
+}

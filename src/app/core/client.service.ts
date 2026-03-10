@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 import { Client } from "./client.model";
+import { Note } from "./note.model";
 
 @Injectable({ providedIn: "root" })
 
@@ -27,16 +28,24 @@ export class ClientService {
     addClient(client: Omit<Client, 'id' | 'dateCreated'>): Observable<Client> {
         return this.http.post<Client>(`${this.apiURL}/users`, client).pipe(
             tap(() => {
+                const currentClients = this.clientsSubject.getValue();
+                const newId = Math.max(...currentClients.map(c => c.id), 0) + 1;
                 const newClient: Client = {
                     ...client,
-                    id: Date.now(),
+                    id: newId,
                     dateCreated: new Date().toISOString()
                 };
-                const currentClients = this.clientsSubject.getValue();
                 this.clientsSubject.next([...currentClients, newClient]);
             })
         );
     }
 
+    getClientById(id: number): Observable<Client> {
+        return this.http.get<Client>(`${this.apiURL}/users/${id}`);
+    }
+
+    getNotesByClient(id: number): Observable<Note[]> {
+        return this.http.get<Note[]>(`${this.apiURL}/users/${id}/posts`);
+    }
 
 }

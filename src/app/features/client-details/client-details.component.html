@@ -1,0 +1,53 @@
+<div class="detail-container">
+    <button mat-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Volver
+    </button>
+
+    @if (client) {
+        <div class="client-card">
+            <h2>{{client.name}}</h2>
+            <div class="client-info-row">
+                <div class="info-row">
+                    <mat-icon>email</mat-icon>
+                    <span>{{client.email}}</span>
+                </div>
+                <div class="info-row">
+                    <mat-icon>phone</mat-icon>
+                    <span>{{client.phone}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="notes-section">
+            <h3>Notas</h3>
+
+            @if (notes.length === 0) {
+                <p>No hay notas disponibles.</p>
+            }
+
+            <div class="notes-grid">
+                @for (note of notes; track note.id){
+
+                    <div class="note-card">
+                        <div class="note-header">
+                            <h2>{{note.title}}</h2>
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                    <mat-icon color="warn">delete</mat-icon>
+                                    Eliminar
+                                </button>
+                            </mat-menu>
+                        </div>
+                        <p>{{note.body}}</p>
+                        
+                    </div>
+                }
+            </div>
+
+        </div>
+    }
+</div>

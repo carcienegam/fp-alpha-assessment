@@ -33,7 +33,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedCol"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedCol;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCol;" (click)="goToDetails(row)" style="cursor: pointer;"></tr>
     </table>
 
     <mat-paginator [length]="dataSource.data.length" [pageSize]="10" showFirstLastButtons></mat-paginator>

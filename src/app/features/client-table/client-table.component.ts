@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { ClientDialogComponent } from "../client-dialog/client-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-client-table",
@@ -53,6 +54,11 @@ export class ClientTableComponent implements OnInit {
         this.dialog.open(ClientDialogComponent, {
             width: '400px'
         });
+    }
+
+    private router = inject(Router);
+    goToDetails(client: Client) {
+        this.router.navigate(['/clients', client.id]);
     }
 
 }
