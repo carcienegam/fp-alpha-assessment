@@ -12,12 +12,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { ClientDialogComponent } from "../client-dialog/client-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 
 @Component({
     selector: "app-client-table",
     templateUrl: "./client-table.component.html",
     styleUrl: "./client-table.component.scss",
-    imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule],
+    imports: [MatTableModule, MatPaginatorModule, DatePipe, MatInputModule, MatIconModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule, MatSortModule],
     standalone: true
 })
 
@@ -29,6 +30,7 @@ export class ClientTableComponent implements OnInit {
     searchControl = new FormControl('');
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort! : MatSort;
 
     ngOnInit() {
         this.clientService.loadClients().subscribe();
@@ -50,6 +52,7 @@ export class ClientTableComponent implements OnInit {
 
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     private dialog = inject(MatDialog);
