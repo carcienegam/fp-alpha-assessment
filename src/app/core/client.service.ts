@@ -5,6 +5,7 @@ import { tap, map } from "rxjs/operators";
 import { Client } from "./client.model";
 import { Note } from "./note.model";
 import { of } from "rxjs";
+import { not } from "rxjs/internal/util/not";
 
 @Injectable({ providedIn: "root" })
 
@@ -54,8 +55,28 @@ export class ClientService {
         return this.http.get<Client>(`${this.apiURL}/users/${id}`);
     }
 
+    private notesCache = new Map<number, Note[]>();
+
     getNotesByClient(id: number): Observable<Note[]> {
-        return this.http.get<Note[]>(`${this.apiURL}/users/${id}/posts`);
+        // Check if we have notes for this client in the cache
+        if (this.notesCache.has(id)) {
+            return of(this.notesCache.get(id)!);
+        }
+
+        return this.http.get<Note[]>(`${this.apiURL}/users/${id}/posts`).pipe(
+            tap(notes => this.notesCache.set(id, notes))
+        )
+    }
+
+    // For cache management when adding or deleting notes
+    addNoteCache(note: Note) {
+        const notes = this.notesCache.get(note.userId) || [];
+        this.notesCache.set(note.userId, [...notes, note]);
+    }
+
+    deleteNoteCache(noteId: number, userId: number) {
+        const notes = this.notesCache.get(userId) || [];
+        this.notesCache.set(userId, notes.filter(n => n.id !== noteId))
     }
 
     deleteNote(noteId: number): Observable<void> {

@@ -46,6 +46,7 @@ export class ClientDetailsComponent implements OnInit {
   
     deleteNote(noteId: number) {
         this.clientService.deleteNote(noteId).subscribe(() => {
+            this.clientService.deleteNoteCache(noteId, this.client!.id);
             this.notes = this.notes.filter(note => note.id !== noteId);
         });
     }
@@ -71,7 +72,8 @@ export class ClientDetailsComponent implements OnInit {
                     title: result.title,
                     body: result.body
                 };
-            this.notes = [...this.notes, newNote];
+                this.clientService.addNoteCache(newNote);
+                this.notes = [...this.notes, newNote];
             }
         });
     }
