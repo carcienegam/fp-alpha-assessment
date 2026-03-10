@@ -27,7 +27,7 @@
 
         <mat-form-field appearance="outline" subscriptSizing="dynamic">
             <mat-label>Teléfono</mat-label>
-            <input matInput formControlName="phone" placeholder="Número de teléfono">
+            <input matInput formControlName="phone" placeholder="Número de teléfono" maxlength="10">
             @if (clientForm.get('phone')?.hasError('pattern') && clientForm.get('phone')?.touched) {
                 <mat-error>Ingrese un número de teléfono válido (10 dígitos)</mat-error>
             }
@@ -36,7 +36,13 @@
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button color="primary" (click)="onSubmit()">Guardar</button>
+<mat-dialog-actions align="center">
+    <button mat-stroked-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        Cancelar
+    </button>
+    <button mat-raised-button color="warn" (click)="onSubmit()">
+        <mat-icon>save</mat-icon>
+        Guardar
+    </button>
 </mat-dialog-actions>

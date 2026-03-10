@@ -5,11 +5,12 @@ import { MatInputModule, MatLabel } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from "../../core/client.service";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-client-dialog',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatLabel, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [MatDialogModule, MatButtonModule, MatLabel, MatInputModule, MatFormFieldModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './client-dialog.component.html',
   styleUrl: './client-dialog.component.css'
 })
