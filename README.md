@@ -1,59 +1,46 @@
 # FpAlphaAssessment
+Panel para gestionar clientes y notas con conexión a API, desarrollado como parte del assessment técnico para FP Alpha.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.19.
+## Stack
 
-## Development server
+- Angular 20
+- TypeScript
+- Angular Material
+- RxJS
+- SCSS
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instrucciones para correr
 
 ```bash
-ng generate component component-name
+npm install && ng serve
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Una vez que el browser este corriendo, abrir en: `http://localhost:4200/`.
 
-```bash
-ng generate --help
-```
+## Unit tests
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para correr las pruebas unitarias con [Karma](https://karma-runner.github.io) usar el siguiente comando:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Funcionalidades
+- Listado de clientes con búsqueda por nombre y paginación
+- Vista de notas de cliente
+- Agregar y eliminar notas con dialog de confirmación
+- Crear nuevos clientes con validación de formulario
+- Dark mode con botón flotante
+- Filtrado ascendente y descendiente por nombre
 
-For end-to-end (e2e) testing, run:
+## Decisiones técnicas
+- Se utilizó 'BehaviorSubject' en el servicio para mantener el estado local de los clientes. Esto nos ayuda a poder seguir viendo los clientes creados al navegar entre vistas, ya que JSONPlaceholder no persiste datos.
+- Las notas de cada cliente se almacenaron en un Map, para mantener las notas agregadas localmente por clientId.
+- Todos los componentes son standalone y se cargan con lazy loading.
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Uso de IA
+Se utilizó Claude como apoyo en las siguientes áreas:
+- Estructura del proyecto: Definición de la arquitectura feature-based y organización de carpetas.
+- Diseño SCSS: Sugerencias de estilos y diseños, adaptación al dark mode.
+- Debug de errores: Apoyo para la detección y resolución de conflictos como el estado perdido de clentes al regresar.
+- Testing: Estructura base de los unit tests para 'ClientService'
